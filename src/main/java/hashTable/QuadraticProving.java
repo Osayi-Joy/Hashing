@@ -1,10 +1,11 @@
 package hashTable;
+
 import java.util.ArrayList;
 
-public class LinearProbing {
+public class QuadraticProving {
     String [] hashTable;
     int usedCellNumber;
-    LinearProbing(int size){
+    QuadraticProving(int size){
         hashTable = new String[size];
         usedCellNumber = 0;
     }
@@ -19,13 +20,11 @@ public class LinearProbing {
         return sum % M;
     }
 
-//Returns LoadFactor of HashTable
+    //Returns LoadFactor of HashTable
     public double getLoadFactor(){
-        double loadFactor = usedCellNumber * 1.0/hashTable.length;
-        return loadFactor;
+        return usedCellNumber  *  1.0 / hashTable.length;
     }
 
-    //RehashTable
     public void  rehashKeys(String word){
         ArrayList<String> data = new ArrayList<>();
         for(String s: hashTable){
@@ -41,24 +40,24 @@ public class LinearProbing {
         }
     }
 
-    //Insert in HashTable
     public void insertInHashTable(String word){
         double loadFactor = getLoadFactor();
         if(loadFactor >= 0.75){
             rehashKeys(word);
-        }else {
+        } else {
             int index = modASCIIHashFunction(word, hashTable.length);
+            int counter = 0;
             for(int i = index; i < index + hashTable.length; i++){
-                int newIndex = i  %  hashTable.length;
+                int newIndex = (index + (counter*counter)) % hashTable.length;
                 if(hashTable[newIndex] == null){
                     hashTable[newIndex] = word;
-                    System.out.println("The " + word + " successfully inserted at location " + newIndex);
+                    System.out.println(word + " has been inserted successfully");
                     break;
                 } else{
-                    System.out.println(newIndex + " is already ocuppied, Trying next empty cell");
+                    System.out.println(newIndex + " is already ocuppied. Trying the next one...");
                 }
+                counter++;
             }
-           usedCellNumber++;
         }
     }
 
@@ -74,30 +73,5 @@ public class LinearProbing {
         }
     }
 
-    public boolean searchHashTable(String word){
-        int index = modASCIIHashFunction(word, hashTable.length);
-        for(int i = index; i< index + hashTable.length; i++){
-            int newindex = i % hashTable.length;
-            if(hashTable[newindex] != null && hashTable[newindex].equals(word)){
-                System.out.println(word + " found at location " + newindex);
-                return true;
-            }
-        }
-        System.out.println(word + " not found in hashTable");
-        return false;
-    }
-
-public void deleteKeyHashTable(String word){
-        int index = modASCIIHashFunction(word, hashTable.length);
-        for(int i = index; i < index + hashTable.length; i++){
-            int newIndex = i % hashTable.length;
-            if(hashTable[newIndex] != null && hashTable[newIndex].equals(word)){
-                hashTable[newIndex] = null;
-                System.out.println(word + " has been deleted from hashTable");
-                return;
-            }
-        }
-    System.out.println(word + " not found in hashTable");
-}
 
 }

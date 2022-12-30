@@ -22,5 +22,10 @@ public class Main {
         linearProbing.searchHashTable("Fox");
         linearProbing.deleteKeyHashTable("Over");
         linearProbing.displayHashTable();
+
+        QuadraticProving quadraticProving = new QuadraticProving(13);
+        quadraticProving.insertInHashTable("The");
+        quadraticProving.insertInHashTable("Quick");
+        quadraticProving.displayHashTable();
     }
 }
