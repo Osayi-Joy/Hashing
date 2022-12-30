@@ -8,9 +8,19 @@ public class Main {
         directChaining.insertHashTable("Brown");
         directChaining.insertHashTable("Fox");
         directChaining.insertHashTable("Over");
-        directChaining.displayHashTable();
-        directChaining.searchHashTable("Over");
-        directChaining.deleteKeyHashTable("Fox");
+//        directChaining.displayHashTable();
+//        directChaining.searchHashTable("Over");
+//        directChaining.deleteKeyHashTable("Fox");
 
+        LinearProbing linearProbing = new LinearProbing(13);
+        linearProbing.insertInHashTable("The");
+        linearProbing.insertInHashTable("Quick");
+        linearProbing.insertInHashTable("Brown");
+        linearProbing.insertInHashTable("Fox");
+        linearProbing.insertInHashTable("Over");
+        linearProbing.displayHashTable();
+        linearProbing.searchHashTable("Fox");
+        linearProbing.deleteKeyHashTable("Over");
+        linearProbing.displayHashTable();
     }
 }
